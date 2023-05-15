@@ -34,10 +34,17 @@ const updateMachine = async (req, res) => {
     // await Product.create(req.body);
     await machines.updateOne(
       { _id: req.body.id },
+      // {
+      //   $set: {
+      //     title: req.body.title,
+      //     image: req.body.image,
+      //     Description: req.body.Description,
+      //     Active: req.body.Active,
+      //   },
+      // }
       {
         $set: {
           title: req.body.title,
-          image: req.body.image,
           Description: req.body.Description,
           Active: req.body.Active,
         },
@@ -91,3 +98,4 @@ module.exports = {
 };
 
 //yCnwPQ0hTR7hioml
+//0ayNW4XZBMEicgET kush db password

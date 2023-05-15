@@ -1,12 +1,7 @@
 const Product = require("../models/product");
 const connectDB = require("../db/connect");
 const ProductJson = require("../products.json");
-const Storage = multer.diskStorage({
-  destination: "uploads",
-  filename: (req, file, cb) => {
-    cb(null, file.originalname);
-  },
-});
+
 const getAllProducts = async (req, res) => {
   const { title, sort, select } = req.query;
   sort ? (sort = sort.replaceAll(",", " ")) : "";
@@ -28,7 +23,7 @@ const getAllProductsTesting = async (req, res) => {
 };
 const saveProducts = async (req, res) => {
   // console.log(ProductJson);
-  // console.log(req.body);
+  //  console.log(req.body);
   //const {ProductsJson} = req.body;
   // ProductJson = req.body;
   //console.log(products);
@@ -47,10 +42,19 @@ const updateProduct = async (req, res) => {
     // await Product.create(req.body);
     await Product.updateOne(
       { _id: req.body.id },
+      // {
+      //   $set: {
+      //     title: req.body.title,
+      //     image: req.body.image,
+      //     ShortDescription: req.body.ShortDescription,
+      //     LongDescription: req.body.LongDescription,
+      //     IsShow: req.body.IsShow,
+      //     Active: req.body.Active,
+      //   },
+      // }
       {
         $set: {
           title: req.body.title,
-          image: req.body.image,
           ShortDescription: req.body.ShortDescription,
           LongDescription: req.body.LongDescription,
           IsShow: req.body.IsShow,

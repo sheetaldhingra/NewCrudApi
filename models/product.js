@@ -8,6 +8,9 @@ const productsSchema = new mongoose.Schema({
     image:{
         type:String
     },
+    // imageBlob:{
+    //     type:Buffer
+    // },
     ShortDescription:{
         type:String
     },

@@ -10,9 +10,9 @@ const {
 } = require("../controller/products");
 router.route("/").get(getAllProducts);
 router.route("/testing").get(getAllProductsTesting);
-router.post("/save-products", saveProducts);
-router.post("/update-products", updateProduct);
-router.post("/deactivate-products", deactivateProduct);
-router.post("/activate-products", activateProduct);
+router.post("/saveproducts", saveProducts);
+router.post("/updateproducts", updateProduct);
+router.post("/deactivateproducts", deactivateProduct);
+router.post("/activateproducts", activateProduct);
 
 module.exports = router;
