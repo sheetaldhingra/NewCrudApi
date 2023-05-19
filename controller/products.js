@@ -3,16 +3,18 @@ const connectDB = require("../db/connect");
 const ProductJson = require("../products.json");
 
 const getAllProducts = async (req, res) => {
-  const { title, sort, select } = req.query;
+  const { title, sort, select, isShow } = req.query;
   sort ? (sort = sort.replaceAll(",", " ")) : "";
   const queryObject = {};
   title ? (queryObject.title = { $regex: title, $options: "i" }) : "";
+  isShow ? (queryObject.isShow = { $regex: isShow, $options: "i" }) : "";
   const page = Number(req.query.page) || 1;
   const limit = Number(req.query.limit) || 10;
   let skip = (page - 1) * limit;
-  // const myData = await Product.find(queryObject).skip(skip).limit(limit);
-  const myData = await Product.find(queryObject);
-  res.status(200).json({ myData, nbHits: myData.length });
+  const myData = title || isShow ? await Product.find(queryObject) : await Product.find(queryObject).skip(skip).limit(limit);
+  const total = await Product.countDocuments(queryObject);
+  // const myData = await Product.find(queryObject);
+  res.status(200).json({ myData, nbHits: total });
 };
 const getAllProductsTesting = async (req, res) => {
   const myData =
