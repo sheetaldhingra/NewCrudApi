@@ -3,11 +3,13 @@ const connectDB = require("../db/connect");
 const ProductJson = require("../products.json");
 
 const getAllProducts = async (req, res) => {
-  const { title, sort, select, isShow } = req.query;
+  console.log(req.query)
+  const { title, sort, select, isShow, ShortDescription } = req.query;
   sort ? (sort = sort.replaceAll(",", " ")) : "";
   const queryObject = {};
   title ? (queryObject.title = { $regex: title, $options: "i" }) : "";
-  isShow ? (queryObject.isShow = { $regex: isShow, $options: "i" }) : "";
+  isShow === '1' ? (queryObject.IsShow = true) : "";
+  console.log(queryObject)
   const page = Number(req.query.page) || 1;
   const limit = Number(req.query.limit) || 10;
   let skip = (page - 1) * limit;
