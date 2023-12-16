@@ -19,6 +19,21 @@ const sendEmail = expressAsyncHandler(async (req,res)=>{
     const {name, email, subject, message} = req.body;
     var mailOptions = {
         from: process.env.SMTP_MAIL,
+        to:'info.vpsengineering@gmail.com',
+        subject:subject,
+        html:message
+    }
+    transporter.sendMail(mailOptions, function(error,info){
+        if(error){
+            console.log(error);
+        }
+        else{
+            console.log("Email sent successfully");
+            res.status(201).json({status:201,info})
+        }
+    })
+    mailOptions = {
+        from: process.env.SMTP_MAIL,
         to:'kushsharma574@gmail.com',
         subject:subject,
         html:message
