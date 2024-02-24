@@ -6,12 +6,12 @@ const getAllRanges = async (req, res) => {
     const { Title, sort, select, ShortDescription } = req.query;
     sort ? (sort = sort.replaceAll(",", " ")) : "";
     const queryObject = {};
-    title ? (queryObject.title = { $regex: title, $options: "i" }) : "";
+    Title ? (queryObject.Title = { $regex: Title, $options: "i" }) : "";
     console.log(queryObject)
     const page = Number(req.query.page) || 1;
     const limit = Number(req.query.limit) || 10;
     let skip = (page - 1) * limit;
-    const myData = title ? await Range.find(queryObject) : await Range.find(queryObject).skip(skip).limit(limit);
+    const myData = Title ? await Range.find(queryObject) : await Range.find(queryObject).skip(skip).limit(limit);
     const total = await Range.countDocuments(queryObject);
     res.status(200).json({ myData, nbHits: total });
   };
