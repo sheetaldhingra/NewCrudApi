@@ -17,7 +17,7 @@ const getAllRanges = async (req, res) => {
   };
   const getAllRangesTesting = async (req, res) => {
     const myData =
-      sort != ""
+      sort !== ""
         ? await Range.find(req.query).sort(sort)
         : await Range.find(req.query).sort(sort).select("Title");
     res.status(200).json({ myData });
