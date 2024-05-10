@@ -68,7 +68,7 @@ const sendEmail = expressAsyncHandler(async (req,res)=>{
       <style>
         /* Inline CSS styles */
         body {
-          font-family: Arial, sans-serif;
+          font-family: "Poppins", Sans-serif;
           line-height: 1.5;
         }
 
