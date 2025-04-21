@@ -8,6 +8,7 @@ const connectDB = require('./db/connect');
 const products_routes = require("./routes/products");
 const machines_routes = require("./routes/machines");
 const email_routes = require("./routes/sendEmail");
+const bulk_email_routes = require("./routes/sendBulkMail");
 const ranges_routes = require("./routes/ranges");
 const cors = require("cors");
 app.use(express.json());
@@ -22,6 +23,7 @@ app.use("/api/products",products_routes);
 app.use("/api/ranges",ranges_routes);
 app.use("/api/machines",machines_routes);
 app.use("/api/email",email_routes);
+app.use("/api/bulkemail",bulk_email_routes);
 
 const start = async () =>{
     try {
